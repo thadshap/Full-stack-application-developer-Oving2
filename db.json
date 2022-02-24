@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": "02395b81-7ba6-45db-8f4c-6da7d0836d2f",
+      "name": "Thadshajini Paramsothy",
+      "epost": "thadsha hotmail",
+      "message": "flott",
+      "organizer": "Thadshajini Paramsothy"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

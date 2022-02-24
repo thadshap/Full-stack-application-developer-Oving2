@@ -2,9 +2,14 @@ import { createStore } from 'vuex'
 
 export default createStore({
     state: {
-        user: 'Thadshajini Paramsothy'
+        user: 'Thadshajini Paramsothy',
+        contacts:[]
     },
-    mutations: {},
+    mutations: {
+        ADD_CONTACT(state, contact){
+            state.contacts.push(contact)
+        }
+    },
     actions: {},
     modules: {}
 })
