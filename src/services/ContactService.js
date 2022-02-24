@@ -10,7 +10,7 @@ const apiClient = axios.create({
 })
 
 export default {
-    postContact(contact){
-        return apiClient.post('/posts',contact)
+    postContact(contacts){
+        return apiClient.post('/posts',contacts)
     }
 }

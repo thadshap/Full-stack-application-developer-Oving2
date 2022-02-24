@@ -1,15 +1,10 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "id": "02395b81-7ba6-45db-8f4c-6da7d0836d2f",
+      "id": "a8bb4baf-7acd-49a7-9370-41b68fede29d",
       "name": "Thadshajini Paramsothy",
-      "epost": "thadsha hotmail",
-      "message": "flott",
+      "epost": "thadsha1710@live.no",
+      "message": "Flott kalkulator!",
       "organizer": "Thadshajini Paramsothy"
     }
   ],

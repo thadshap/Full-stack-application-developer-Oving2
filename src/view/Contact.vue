@@ -13,13 +13,12 @@
 
       <button type="submit">Submit</button>
     </form>
-    <div>{{$store.state.contacts}}</div>
   </div>
 </template>
 
 <script>
 import { v4 as uuidv4 } from 'uuid'
-import ContactService from "../services/ContactService";
+
 export default {
   data(){
     return{
@@ -32,6 +31,7 @@ export default {
       }
     }
   },
+  inject:['GStore'],
   methods: {
     onSubmit() {
       const contactInfo={
@@ -39,14 +39,11 @@ export default {
         id : uuidv4(),
         organizer : this.$store.state.user
       }
-      console.log("Contacts: ", contactInfo)
-      ContactService.postContact(contactInfo)
-      .then(() => {
-          //this.$store.commit('ADD_CONTACT',contactInfo)
-          })
-      .catch(error => {
-        console.log(error)
-      })
+      this.$store.dispatch('createContact',contactInfo)
+      this.GStore.flashMessage = 'sending -> sent'
+      setTimeout(() => {
+        this.GStore.flashMessage = ''
+      }, 3000)
     }
   }
 }
