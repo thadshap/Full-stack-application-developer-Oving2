@@ -90,7 +90,8 @@ export default {
 
 <style scoped>
 textarea,input{
-  margin: 10px 10px 0 10px;
+  margin: 25px 10px 0 10px;
+  width: 100%;
 }
 #registerContainer {
   display: grid;
@@ -113,15 +114,25 @@ textarea,input{
 
 #nameError, #epostError, #messageError{
   color: red;
-  margin: 0 0 0 40%;
+  margin: 0 0 0 44%;
   font-size: .8em;
 }
 
 #nameLabel, #epostLabel, #messageLabel{
   width: 100px;
+  margin: 25px 10px 0 0;
+  text-align: left;
 }
 
 #handleClickRegister{
-  margin: 10px 0 0 40%;
+  margin: 25px 0 0 0;
+  width: 100%;
+  background: #007AF3;
+  color: white;
+  padding: .6em 1.3em;
+  font-size: 1em;
+  border-radius: 5em;
+  font-weight: bold;
+  justify-content: center;
 }
 </style>
