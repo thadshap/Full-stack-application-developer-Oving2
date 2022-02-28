@@ -21,6 +21,7 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid'
+import Calculator from "./Calculator";
 
 export default {
   data(){
@@ -68,10 +69,13 @@ export default {
       setTimeout(() => {
         this.GStore.flashMessage = ''
       }, 3000)
-      document.getElementById("name").value = '';
-      document.getElementById("epost").value = ''
-      document.getElementById("message").value = '';
+      this.$router.push({
+        name: 'Calculator',
+        component: Calculator,
+      })
     }
   }
 }
 </script>
+
+
