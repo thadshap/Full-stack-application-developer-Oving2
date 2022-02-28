@@ -1,20 +1,30 @@
 <template>
-  <div>
+  <div id="registerContainer">
     <form class="review-form" @submit.prevent="onSubmit">
-      <h3>Contact form</h3>
-      <label>Name:</label>
-      <input id="name" v-model="contactInfo.name">
-      <p v-if="!nameIsValid" class="error-message">The name field is required</p>
+      <h3 id="registerTitle">Contact form</h3>
+      <div id="name">
+      <label id="nameLabel">Name:</label>
+      <input v-model="contactInfo.name">
+      </div>
+      <div id="nameError">
+      <p v-if="!nameIsValid" class="error-message">Name field is required</p>
+      </div>
+      <div id="epost">
+      <label id="epostLabel">E-post:</label>
+      <input v-model="contactInfo.epost">
+      </div>
+      <div id="epostError">
+      <p v-if="!epostIsValid" class="error-message">Email field is required</p>
+      </div>
+      <div id="message">
+      <label id="messageLabel">Message:</label>
+      <textarea v-model="contactInfo.message"></textarea>
+      </div>
+      <div id="messageError">
+      <p v-if="!messageIsValid" class="error-message">Message field is required</p>
+      </div>
 
-      <label>E-post:</label>
-      <input id="epost" v-model="contactInfo.epost">
-      <p v-if="!epostIsValid" class="error-message">The epost field is required</p>
-
-      <label>Message:</label>
-      <textarea id="message" v-model="contactInfo.message"></textarea>
-      <p v-if="!messageIsValid" class="error-message">The message field is required</p>
-
-      <button :disabled="!formIsValid" type="submit">Submit</button>
+      <button :disabled="!formIsValid" type="submit" id="handleClickRegister">Submit</button>
     </form>
   </div>
 </template>
@@ -78,4 +88,40 @@ export default {
 }
 </script>
 
+<style scoped>
+textarea,input{
+  margin: 10px 10px 0 10px;
+}
+#registerContainer {
+  display: grid;
+  justify-content: center;
+  margin: 40px;
+}
 
+#registerTitle {
+  font-size: x-large;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#name, #epost, #message, #handleClickRegister, #nameError, #epostError, #messageError{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 20px;
+}
+
+#nameError, #epostError, #messageError{
+  color: red;
+  margin: 0 0 0 40%;
+  font-size: .8em;
+}
+
+#nameLabel, #epostLabel, #messageLabel{
+  width: 100px;
+}
+
+#handleClickRegister{
+  margin: 10px 0 0 40%;
+}
+</style>
