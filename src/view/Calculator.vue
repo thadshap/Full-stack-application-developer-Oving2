@@ -44,6 +44,7 @@
    
 <script>
 import Logo from '../components/Logo.vue';
+import CalculationService from "../services/CalculationService";
 
 export default {
     components: {Logo},
@@ -70,17 +71,17 @@ export default {
             this.current += number;
             document.getElementById("input-field").value += number;
         },
-        equals(){
+        equals: async function(){
             this.equal = document.getElementById("input-field").value;
             if(this.equal.includes(',')){
-            alert('You have to use a dot (.) insted of comma (,) in order to write a decimal number. Try again.')
-            document.getElementById("input-field").value = '';
+              alert('You have to use a dot (.) insted of comma (,) in order to write a decimal number. Try again.')
+              document.getElementById("input-field").value = '';
             }
             else{
-            this.current = eval(this.equal);
-            this.previous = this.current;
-            document.getElementById("input-field").value = this.current;
-            this.log.push(this.equal+'='+this.current);
+              await this.changeTempFunction(this.equal);
+              this.previous = this.current;
+              document.getElementById("input-field").value = this.current;
+              this.log.push(this.equal+'='+this.current);
             }
         },
         clear() {
@@ -98,6 +99,13 @@ export default {
         clearButton() {
         this.log = [];
         },
+      changeTempFunction: async function (equal) {
+        await CalculationService.create(equal)
+            .then(function (response) { // response = json object => PROMISE
+              const result = response.data.answer
+              this.current = String(result)
+            }.bind(this))
+      }
     },
 };
 </script>
