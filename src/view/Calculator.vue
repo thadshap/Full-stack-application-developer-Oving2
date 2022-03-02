@@ -154,7 +154,7 @@ button:hover{
 }
 /* Styling log box */
 .log{
-    padding: 0 3% 0 3%;
+    padding: 0 0 0 3%;
     border: 2px solid rgba(0, 0, 0, 0.521);
     border-radius: .3em;
     margin: 0 5% 0 5%;
@@ -168,11 +168,12 @@ button:hover{
     border-radius: .3em;
     border: 2px solid rgba(0, 0, 0, 0.24);
     height: 2em;
-    width: 5em;
+    width: 4em;
     float: right;
     vertical-align: text-bottom;
     margin: 0;
     line-height: 0;
+  font-size: .5em;
 }
 @media only screen and (min-width: 768px) {
 .calculator{
