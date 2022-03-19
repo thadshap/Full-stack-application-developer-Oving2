@@ -4,8 +4,6 @@
       {{ GStore.flashMessage }}
     </div>
     <div id="nav">
-      <router-link to="/">Calculator</router-link> |
-      <router-link to="/contact">Contact</router-link>
     </div>
     <router-view />
   </div>
@@ -44,8 +42,5 @@ export default {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
-}
-#nav a.router-link-exact-active {
-  color: #3f0073cc;
 }
 </style>

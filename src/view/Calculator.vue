@@ -175,6 +175,7 @@ button:hover{
     line-height: 0;
   font-size: .5em;
 }
+
 @media only screen and (min-width: 768px) {
 .calculator{
     margin-top: 20%;
