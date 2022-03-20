@@ -32,7 +32,10 @@
     </div>
     </div>
         <div id= "log-box" class="log">
-        <h3>Log: <button id="clearBtn" class="clearBtn" @click="clearButton()">Clear</button></h3>
+        <h3>Log:
+          <button id="clearBtn" class="clearBtn" @click="clearButton()">Clear</button>
+          <button id="loadBtn" class="loadBtn" @click="loadButton()">Load</button>
+        </h3>
         <div id="log">
         <ul id="list">
           <li v-for="value in log" v-bind:key="value">{{ value }}</li>
@@ -84,6 +87,10 @@ export default {
               this.log.push(this.equal+'='+this.current);
             }
         },
+        loadButton(){
+          this.log=[];
+          this.equationTable();
+        },
         clear() {
         this.current = "";
         document.getElementById("input-field").value = this.current;
@@ -99,11 +106,23 @@ export default {
         clearButton() {
         this.log = [];
         },
+      register() {
+        return this.$store.state.register
+      },
       changeTempFunction: async function (equal) {
-        await CalculationService.create(equal)
+        await CalculationService.setEquation(equal, this.register().id)
             .then(function (response) { // response = json object => PROMISE
-              const result = response.data.answer
+              console.log(response)
+              const result = response.data
               this.current = String(result)
+            }.bind(this))
+      },
+      equationTable: async function (){
+        await CalculationService.getEquations(this.register().id)
+            .then(function (response){
+              response.data.map((r) => {
+                this.log.push(r.equation+'='+r.answer);
+              })
             }.bind(this))
       }
     },
@@ -163,7 +182,7 @@ button:hover{
     overflow: scroll;   
 }
 .clearBtn{
-    background: rgb(255, 166, 0);
+    background: red;
     color: rgba(255, 255, 255, 0.945);
     border-radius: .3em;
     border: 2px solid rgba(0, 0, 0, 0.24);
@@ -174,6 +193,20 @@ button:hover{
     margin: 0;
     line-height: 0;
   font-size: .5em;
+}
+.loadBtn{
+  background: green;
+  color: rgba(255, 255, 255, 0.945);
+  border-radius: .3em;
+  border: 2px solid rgba(0, 0, 0, 0.24);
+  height: 2em;
+  width: 4em;
+  float: right;
+  vertical-align: text-bottom;
+  margin: 0;
+  line-height: 0;
+  font-size: .5em;
+  margin-right: 1%;
 }
 
 @media only screen and (min-width: 768px) {

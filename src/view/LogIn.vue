@@ -20,7 +20,6 @@
 import Calculator from "./Calculator";
 
 export default {
-
   name: 'LoginComponent',
   created() {
     this.$store.dispatch('fetchProfiles')
