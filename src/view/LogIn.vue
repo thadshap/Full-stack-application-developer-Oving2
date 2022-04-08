@@ -9,16 +9,17 @@
     </div>
     <div id="password">
       <label id="passwordLabel">Password: </label>
-      <input v-model="password" id="p">
+      <input v-model="password" id="p" type="password">
       <p id="header">{{header}}</p>
       <button v-on:click="handleClickSignin" id="logging">Sign in</button>
     </div>
+    <label id="loginstatusLabel">{{loginStatus}}</label>
   </div>
 </template>
 
 <script>
 import Calculator from "./Calculator";
-
+import service from "../services/LogInService";
 export default {
   name: 'LoginComponent',
   created() {
@@ -27,6 +28,7 @@ export default {
 
   methods: {
     handleClickSignin (){
+      /**
       this.$store.dispatch('fetchProfile', this.username)
       const fetchedProfile = this.$store.state.register
 
@@ -43,14 +45,37 @@ export default {
       }
       else {
         this.header = 'Login failed'
-      }
+      }*/
+      const loginRequest = { username: this.username, password: this.password };
+      const loginResponse = service.doLogin(loginRequest);
+      console.log(loginResponse)
+      loginResponse.then((resolvedResult) => {
+        if (resolvedResult.loginStatus === 'Success') {
+          this.$store.dispatch('fetchProfile', this.username)
+          const fetchedProfile = this.$store.state.register
+
+          if (
+              fetchedProfile.username === this.username &&
+              fetchedProfile.password === this.password
+          ) {
+            this.$router.push({
+              name: 'Calculator',
+              component: Calculator,
+            })
+          }
+        }
+        else {
+          this.loginStatus = "Failed, please try again!";
+        }
+      });
     }
   },
   data() {
     return {
       username: '',
       password: '',
-      header: ''
+      header: '',
+      loginStatus: '',
     }
   }
 }

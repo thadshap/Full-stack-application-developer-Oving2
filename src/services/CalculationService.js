@@ -1,7 +1,7 @@
 import axios from "axios";
 import http from "../http-common";
 
-const CALCULATION_API_BASE_URL = 'http://localhost:8081/api/calculations'
+const CALCULATION_API_BASE_URL = 'http://localhost:9090'
 
 
     export default {

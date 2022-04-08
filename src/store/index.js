@@ -8,7 +8,8 @@ export default createStore({
         contacts:[],
         registers:[],
         register:{},
-        username: ''
+        username: '',
+        id: ''
     },
     mutations: {
         ADD_CONTACT(state, contacts){
@@ -42,6 +43,7 @@ export default createStore({
             } else{
                 LogInService.getProfile(username)
                     .then(response => {
+                        console.log(existingProfile)
                         commit('SET_PROFILE', response.data)
                     })
                     .catch(error =>{
